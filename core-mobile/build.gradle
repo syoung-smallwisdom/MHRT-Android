@@ -1,4 +1,7 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'org.jetbrains.dokka-android'
 
 android {
     compileSdkVersion 27
@@ -22,6 +25,12 @@ android {
 
     // Require publicly exposed resources to be prefixed with 'rs_'
     resourcePrefix 'rs_'
+
+    dokka {
+        reportUndocumented = true
+        outputFormat = "$dokka_format"
+        outputDirectory = "$projectDir/javadoc"
+    }
 }
 
 dependencies {
@@ -41,5 +50,3 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
