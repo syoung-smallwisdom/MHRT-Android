@@ -1,5 +1,5 @@
 package org.researchstack.task
 
-interface Task {
+interface ITask {
     fun getIdentifier(): String
 }

@@ -1,9 +1,9 @@
 package org.researchstack.result
 
 /**
- * A Result.
+ * A IResult.
  */
-interface Result {
+interface IResult {
 
     /**
      * Returns identifier for this result.

@@ -1,5 +1,5 @@
 package org.researchstack.step
 
-interface Step {
+interface IStep {
     fun getIdentifier(): String
 }

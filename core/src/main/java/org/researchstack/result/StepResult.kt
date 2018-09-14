@@ -1,8 +1,8 @@
 package org.researchstack.result
 
-import org.researchstack.step.Step
+import org.researchstack.step.IStep
 
-class StepResult : Step {
+class StepResult : IStep {
     override fun getIdentifier(): String {
         TODO("not implemented")
     }
