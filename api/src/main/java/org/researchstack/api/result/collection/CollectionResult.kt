@@ -1,5 +1,7 @@
 package org.researchstack.api.result.collection
 
+import org.researchstack.api.lastWith
+import org.researchstack.api.removeAllWith
 import org.researchstack.api.result.Result
 
 /**
@@ -21,7 +23,7 @@ interface CollectionResult : Result {
  *  @return          The result or `nil` if not found.
  */
 fun CollectionResult.findResult(identifier: String): Result? =
-        this.inputResults.first { r -> r.identifier == identifier }
+        this.inputResults.lastWith(identifier)
 
 /**
  *  Append the result to the end of the input results, removing any previous instances with the
@@ -30,7 +32,7 @@ fun CollectionResult.findResult(identifier: String): Result? =
  *  @param result       The result to add to the step history.
  */
 fun CollectionResult.appendInputResults(result: Result) {
-    this.inputResults.removeIf { r -> r.identifier == result.identifier }
+    this.inputResults.removeAllWith(result.identifier)
     this.inputResults.add(result)
 }
 
@@ -39,9 +41,8 @@ fun CollectionResult.appendInputResults(result: Result) {
  *
  * @param identifier    The identifier of the result to remove.
  */
-fun CollectionResult.removeInputResultWith(identifier: String) {
-    this.inputResults.removeIf { r -> r.identifier == identifier }
-}
+fun CollectionResult.removeInputResultWith(identifier: String) =
+    this.inputResults.removeAllWith(identifier)
 
 // TODO: syoung 09/18/2018 Convert to Swift if implementing the AnswerResultFinder interface.
 //

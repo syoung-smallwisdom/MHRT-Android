@@ -1,8 +1,11 @@
 package org.researchstack.api.result.collection
 
+import org.researchstack.api.Identifiable
+import org.researchstack.api.lastWith
 import org.researchstack.api.result.Result
 import org.researchstack.api.step.Step
 import java.util.UUID
+import org.researchstack.api.removeAllWith
 
 /**
  *  `TaskResult` is a result associated with a task. This object includes a step history, task run
@@ -37,7 +40,7 @@ interface TaskResult : Result {
  *  @return          The result or `nil` if not found.
  */
 fun TaskResult.findResult(step: Step): Result? =
-        this.stepHistory.first { r -> r.identifier == step.identifier }
+        this.stepHistory.lastWith(step.identifier)
 
 /**
  *  Append the result to the end of the step history, removing any previous instances with the
@@ -46,7 +49,7 @@ fun TaskResult.findResult(step: Step): Result? =
  *  @param result       The result to add to the step history.
  */
 fun TaskResult.appendStepHistory(result: Result) {
-    this.stepHistory.removeIf { r -> r.identifier == result.identifier }
+    this.stepHistory.removeAllWith(result.identifier)
     this.stepHistory.add(result)
 }
 
@@ -76,7 +79,7 @@ fun TaskResult.removeToEndOfStepHistoryFrom(stepIdentifier: String): List<Result
  *  @param result       The result to add to the step history.
  */
 fun TaskResult.appendAsyncResults(result: Result) {
-    this.asyncResults.removeIf { r -> r.identifier == result.identifier }
+    this.asyncResults.removeAllWith(result.identifier)
     this.asyncResults.add(result)
 }
 
@@ -97,3 +100,4 @@ fun TaskResult.appendAsyncResults(result: Result) {
 //        }
 //        return nil
 //    }
+

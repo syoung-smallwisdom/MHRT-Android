@@ -26,9 +26,11 @@ val SubtaskStep.identifier: String
 /**
  * The step result for a subtask step should be the task result instantiated by the task.
  */
-fun SubtaskStep.instantiateStepResult(): Result = this.task.instantiateTaskResult()
+fun SubtaskStep.instantiateStepResult(): Result =
+        this.task.instantiateTaskResult()
 
 /**
  * Validation of the step requires validation of the task.
  */
-fun SubtaskStep.validate() = this.task.validate()
+fun SubtaskStep.validate() =
+        this.task.validate()
