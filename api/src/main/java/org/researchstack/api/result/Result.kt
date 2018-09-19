@@ -1,11 +1,11 @@
 package org.researchstack.api.result
 
-import java.time.LocalDate
+import org.threeten.bp.LocalDate
 
 /**
  *  `Result` is the base implementation for a result associated with a task, step, or asynchronous
  *  action.
- * 
+ *
  *  When running a task, there will be a result of some variety used to mark each step in the task.
  *  This is the base interface.
  */
