@@ -16,7 +16,7 @@ interface Result : Identifiable {
      *  A String that indicates the type of the result. This can be used to serialize and
      *  deserialize the result using a factory.
      */
-    var resultType: String
+    val resultType: String
 
     /**
      *  The start date timestamp for the result.
